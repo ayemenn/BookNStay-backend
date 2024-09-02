@@ -5,7 +5,8 @@ ruby "3.3.3"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.3", ">= 7.1.3.4"
 gem 'pg'
-gem 'devise'
+gem 'devise', '~> 4.9.4'
+gem 'warden', '~> 1.2.9'
 gem 'devise-jwt'
 gem 'rack-cors'
 gem 'jsonapi-serializer'
