@@ -1,13 +1,15 @@
 class SearchHistoriesController < ApplicationController
-  before_action :authenticate_user!
-
+  skip_before_action :verify_authenticity_token, only: [:create]
+  
   def create
-    search_history = current_user.search_histories.new(search_history_params)
-    
-    if search_history.save
-      render json: { message: 'Search saved successfully', search_history: search_history }, status: :created
+    # Fetch data from TripAdvisor API using the service object
+    service = TripAdvisorSearchService.new(search_history_params[:search_query])
+    search_results = service.search
+
+    if search_results['error']
+      render json: { error: search_results['error'] }, status: :unprocessable_entity
     else
-      render json: { errors: search_history.errors.full_messages }, status: :unprocessable_entity
+      render json: search_results, status: :ok
     end
   end
 
