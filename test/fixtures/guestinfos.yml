@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  number_of_adults: 1
+  number_of_children: 1
+
+two:
+  user: two
+  number_of_adults: 1
+  number_of_children: 1

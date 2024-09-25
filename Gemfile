@@ -5,9 +5,10 @@ ruby "3.3.3"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.3", ">= 7.1.3.4"
 gem 'pg'
-gem 'devise'
+gem 'devise', '~> 4.9.4'
+gem 'warden', '~> 1.2.9'
 gem 'devise-jwt'
-gem 'rack-cors'
+
 gem 'jsonapi-serializer'
 
 # Use sqlite3 as the database for Active Record
@@ -49,7 +50,7 @@ group :development do
   # gem "spring"
 end
 
-
+gem "stripe"
 gem "byebug"
 gem 'activeadmin', '~> 3.2.2'
 gem 'sass-rails', '~> 6.0'
@@ -59,3 +60,5 @@ gem "rack-cors"
 gem 'devise-jwt'
 gem 'jsonapi-serializer'
 gem 'active_model_serializers'
+gem 'httparty'
+gem 'pry'
