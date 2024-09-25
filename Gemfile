@@ -50,7 +50,7 @@ group :development do
   # gem "spring"
 end
 
-
+gem "stripe"
 gem "byebug"
 gem 'activeadmin', '~> 3.2.2'
 gem 'sass-rails', '~> 6.0'
@@ -61,3 +61,4 @@ gem 'devise-jwt'
 gem 'jsonapi-serializer'
 gem 'active_model_serializers'
 gem 'httparty'
+gem 'pry'

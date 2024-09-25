@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
-  get 'locations/photos'
-  get 'location_details/show'
-  # devise_for :admin_users, ActiveAdmin::Devise.config
-  # ActiveAdmin.routes(self)
+  # Other routes...
 
   namespace :api do
     namespace :v1 do
@@ -13,10 +10,19 @@ Rails.application.routes.draw do
     end
   end
 
-  # Add routes for SearchHistoriesController
-   resources :search_histories, only: [:create, :index]
-  # resources :reviews, only: [:create]
-   get 'current_user' , to: 'auth#verify'
-   get '/locations/:id/photos', to: 'locations#photos'
-   get 'location_details/:id', to: 'location_details#show'
+  get 'current_user', to: 'auth#verify'
+  get '/locations/:id/photos', to: 'locations#photos'
+  get 'location_details/:id', to: 'location_details#show'
+  get '/reviews/fetch', to: 'reviews#fetch_reviews'
+
+  resources :search_histories, only: [:create, :index]
+  resources :bookings, only: [:create]
+  resources :guestinfos, only: [:create]
+
+  # Adjusted Payments routes
+  resources :payments, only: [:create] do
+    collection do
+      post 'payment_intents', to: 'payments#create_payment_intent'
+    end
+  end
 end

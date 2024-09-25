@@ -5,6 +5,8 @@ class User < ApplicationRecord
   include ::Ransackable
   has_many :search_histories, dependent: :destroy
   has_many :reviews
+  has_many :bookings
+  has_many :guestinfos
 
   # Include Devise modules
   devise :database_authenticatable, :registerable,
