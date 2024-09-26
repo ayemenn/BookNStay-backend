@@ -1,5 +1,4 @@
 class AuthController < ApplicationController
-  
     include Authenticatable
 
     def verify

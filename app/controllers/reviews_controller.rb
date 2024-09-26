@@ -1,12 +1,18 @@
 class ReviewsController < ApplicationController
-  #before_action :authenticate_user!
+  # before_action :authenticate_user!
   skip_before_action :verify_authenticity_token, only: [:create]
 
   def create
-    review = current_user.reviews.new(review_params)
+    user = User.find(params[:review][:user_id])
 
-    if review.save
-      render json: { success: true, message: 'Review created successfully', review: review }, status: :created
+    review = Review.new(
+      user_id: user.id,
+      rating: params[:review][:rating],
+      comment: params[:review][:comment],
+      location_id: params[:review][:location_id] 
+    )
+      if review.save
+      render json: { success: true, message: 'Review created successfully', review: review.as_json(only: [:id, :rating, :comment, :created_at, :user_id])}, status: :created
     else
       render json: { success: false, errors: review.errors.full_messages }, status: :unprocessable_entity
     end
@@ -27,6 +33,6 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:rating, :comment, :location_id) # Ensure location_id is permitted
+    params.require(:review).permit(:rating, :comment, :location_id, :user_id) 
   end
 end

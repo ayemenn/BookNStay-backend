@@ -14,9 +14,10 @@ Rails.application.routes.draw do
   get '/locations/:id/photos', to: 'locations#photos'
   get 'location_details/:id', to: 'location_details#show'
   get '/reviews/fetch', to: 'reviews#fetch_reviews'
+  post '/reviews', to: 'reviews#create'
 
   resources :search_histories, only: [:create, :index]
-  resources :bookings, only: [:create]
+  resources :bookings, only: [:create, :destroy]
   resources :guestinfos, only: [:create]
 
   # Adjusted Payments routes
