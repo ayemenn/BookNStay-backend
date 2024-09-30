@@ -14,6 +14,7 @@ class User < ApplicationRecord
 
   # Ensure that the user has a `jti` value (JWT ID) when created or updated
   before_create :generate_jti
+  
 
   # Method to generate a new `jti` value (called on user creation)
   def generate_jti

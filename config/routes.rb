@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  # Other routes...
 
   namespace :api do
     namespace :v1 do
@@ -16,11 +15,12 @@ Rails.application.routes.draw do
   get '/reviews/fetch', to: 'reviews#fetch_reviews'
   post '/reviews', to: 'reviews#create'
 
+
   resources :search_histories, only: [:create, :index]
   resources :bookings, only: [:create, :destroy]
-  resources :guestinfos, only: [:create]
+  resources :guestinfos, only: [:create , :destroy]
 
-  # Adjusted Payments routes
+  #  Payments routes
   resources :payments, only: [:create] do
     collection do
       post 'payment_intents', to: 'payments#create_payment_intent'

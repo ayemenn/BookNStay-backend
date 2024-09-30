@@ -9,22 +9,26 @@ class PaymentsController < ApplicationController
       return
     end
     
-    # Assuming total_amount needs to be calculated here
-    total_amount = calculate_total_amount(booking, params[:price_per_night])
-    create_payment(booking.id, total_amount)
-    
-    render json: { message: 'Payment created successfully' }, status: :created
+    # Use BillCalculationService to calculate total amount
+    service = BillCalculationService.new(booking, params[:price_per_night])
+
+    if service.call
+      create_payment(booking.id, service.total_amount)
+      render json: { message: 'Payment created successfully' }, status: :created
+    else
+      render json: { error: 'Failed to calculate total amount.' }, status: :unprocessable_entity
+    end
   end
 
   # POST /payment_intents
   def create_payment_intent
     booking = Booking.find(params[:booking_id])
-    price_per_night = params[:price_per_night]
 
-    begin
-      service = BillCalculationService.new(booking, price_per_night)
+    # Use BillCalculationService to calculate total amount
+    service = BillCalculationService.new(booking, params[:price_per_night])
 
-      if service.call
+    if service.call
+      begin
         payment_intent = Stripe::PaymentIntent.create(
           amount: (service.total_amount * 100).to_i, # Convert to cents and ensure it's an integer
           currency: 'usd',
@@ -32,11 +36,11 @@ class PaymentsController < ApplicationController
           metadata: { booking_id: booking.id }
         )
         render json: { client_secret: payment_intent.client_secret, payment_id: payment_intent.id }, status: :ok
-      else
-        render json: { errors: 'Failed to create payment' }, status: :unprocessable_entity
+      rescue Stripe::StripeError => e
+        render json: { error: "Stripe error: #{e.message}" }, status: :unprocessable_entity
       end
-    rescue Stripe::StripeError => e
-      render json: { error: e.message }, status: :unprocessable_entity
+    else
+      render json: { error: 'Failed to calculate total amount.' }, status: :unprocessable_entity
     end
   end
 
@@ -47,10 +51,7 @@ class PaymentsController < ApplicationController
       booking_id: booking_id,
       total_amount: amount
     )
-  end
-
-  def calculate_total_amount(booking, price_per_night)
-    nights = (booking.end_date - booking.start_date).to_i
-    (nights * price_per_night.to_f).round(2) # Ensure two decimal places
+  rescue ActiveRecord::RecordInvalid => e
+    render json: { error: "Failed to create payment: #{e.message}" }, status: :unprocessable_entity
   end
 end
