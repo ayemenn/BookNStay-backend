@@ -6,24 +6,21 @@ Rails.application.routes.draw do
         registrations: "api/v1/users/registrations",
         sessions: "api/v1/users/sessions",
       }
-    end
-  end
 
-  get 'current_user', to: 'auth#verify'
-  get '/locations/:id/photos', to: 'locations#photos'
-  get 'location_details/:id', to: 'location_details#show'
-  get '/reviews/fetch', to: 'reviews#fetch_reviews'
-  post '/reviews', to: 'reviews#create'
-
-
-  resources :search_histories, only: [:create, :index]
-  resources :bookings, only: [:create, :destroy]
-  resources :guestinfos, only: [:create , :destroy]
-
-  #  Payments routes
-  resources :payments, only: [:create] do
-    collection do
-      post 'payment_intents', to: 'payments#create_payment_intent'
+      get 'current_user', to: 'auth#verify'
+      get '/locations/:id/photos', to: 'locations#photos'
+      get 'location_details/:id', to: 'location_details#show'
+      get '/reviews/fetch', to: 'reviews#fetch_reviews'
+      post '/reviews', to: 'reviews#create'
+    
+      resources :search_histories, only: [:create, :index]
+      resources :bookings, only: [:create, :destroy]
+      resources :guestinfos, only: [:create , :destroy]
+      resources :payments, only: [:create] do
+        collection do
+          post 'payment_intents', to: 'payments#create_payment_intent'
+        end
+      end
     end
   end
 end

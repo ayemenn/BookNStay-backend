@@ -1,3 +1,4 @@
+module Api::V1
   class BookingsController < ApplicationController
     def create
       # Only save booking if payment was successful (placeholder for now)
@@ -24,5 +25,6 @@
       end
     end
   end
+end
   
   

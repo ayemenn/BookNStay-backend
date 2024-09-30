@@ -1,3 +1,4 @@
+module Api::V1
 class SearchHistoriesController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:create]
   
@@ -31,4 +32,5 @@ class SearchHistoriesController < ApplicationController
   def search_history_params
     params.require(:search_history).permit(:search_query, :user_id)  # Permit user_id and search_query
   end
+end
 end
