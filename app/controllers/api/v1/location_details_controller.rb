@@ -3,7 +3,7 @@ module Api::V1
     skip_before_action :verify_authenticity_token, only: [:show]
 
     def show
-      
+      # Fetch data from TripAdvisor API using the service object
       service = TripAdvisorDetailsService.new(params[:id])
       location_details = service.fetch_details
 

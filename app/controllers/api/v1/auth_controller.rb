@@ -9,6 +9,7 @@ module Api::V1
             data: {
               email: @current_user.email,
               name: @current_user.name,
+              # Include other user fields as needed
             }
           }, status: :ok
         else

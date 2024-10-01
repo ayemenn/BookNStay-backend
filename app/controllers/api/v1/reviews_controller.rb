@@ -20,7 +20,7 @@ module Api::V1
     end
 
     def fetch_reviews
-      location_id = params[:location_id] 
+      location_id = params[:location_id] # Get location_id from params
       service = TripAdvisorReviewsService.new(location_id)
       reviews = service.fetch_reviews
 

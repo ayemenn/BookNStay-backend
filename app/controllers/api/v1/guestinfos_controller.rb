@@ -1,6 +1,7 @@
 module Api::V1
-  
   class GuestinfosController < ApplicationController
+
+    # POST /guestinfos
     def create
       guestinfo = Guestinfo.new(guestinfo_params.merge(user_id: params[:user_id]))
 
@@ -11,6 +12,7 @@ module Api::V1
       end
     end
 
+    # DELETE /guestinfos/:id
     def destroy
       guestinfo = Guestinfo.find(params[:id])
 

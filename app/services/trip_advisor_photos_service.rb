@@ -1,3 +1,4 @@
+# app/services/trip_advisor_photos_service.rb
 require 'net/http'
 require 'json'
 
