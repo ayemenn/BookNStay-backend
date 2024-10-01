@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_23_105939) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_26_071248) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,10 +40,57 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_23_105939) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "bookings", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.date "start_date"
+    t.date "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "guestinfo_id", null: false
+    t.integer "location_id"
+    t.index ["guestinfo_id"], name: "index_bookings_on_guestinfo_id"
+    t.index ["user_id"], name: "index_bookings_on_user_id"
+  end
+
+  create_table "guestinfos", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "number_of_adults"
+    t.integer "number_of_children"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_guestinfos_on_user_id"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.decimal "total_amount"
+    t.bigint "booking_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["booking_id"], name: "index_payments_on_booking_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.decimal "rating"
+    t.text "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "location_id"
+    t.index ["location_id"], name: "index_reviews_on_location_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
+  create_table "search_histories", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "search_query"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_search_histories_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
-    t.string "password_digest"
     t.string "phone_no"
     t.integer "age"
     t.datetime "created_at", null: false
@@ -58,5 +105,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_23_105939) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  
+  add_foreign_key "bookings", "guestinfos"
+  add_foreign_key "bookings", "users"
+  add_foreign_key "guestinfos", "users"
+  add_foreign_key "payments", "bookings"
+  add_foreign_key "reviews", "users"
+  add_foreign_key "search_histories", "users"
 end

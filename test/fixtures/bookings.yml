@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  property: one
+  start_date: 2024-09-10
+  end_date: 2024-09-10
+  guestinfo: one
+
+two:
+  user: two
+  property: two
+  start_date: 2024-09-10
+  end_date: 2024-09-10
+  guestinfo: two
