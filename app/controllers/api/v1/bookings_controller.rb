@@ -1,7 +1,6 @@
 module Api::V1
   class BookingsController < ApplicationController
     def create
-      # Only save booking if payment was successful (placeholder for now)
       booking = Booking.create!(
         user_id: params[:user_id],
         guestinfo_id: params[:guestinfo_id],
