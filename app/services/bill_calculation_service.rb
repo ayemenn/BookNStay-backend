@@ -14,6 +14,6 @@ class BillCalculationService
 
   def calculate_total_amount
     nights = (@booking.end_date - @booking.start_date).to_i
-    @total_amount = (nights * @price_per_night).round(2) # Ensure two decimal places
+    @total_amount = (nights * @price_per_night).round(2) 
   end
 end

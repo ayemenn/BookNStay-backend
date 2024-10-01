@@ -1,7 +1,6 @@
 module Api::V1
   class BookingsController < ApplicationController
     def create
-      # Only save booking if payment was successful (placeholder for now)
       booking = Booking.create!(
         user_id: params[:user_id],
         guestinfo_id: params[:guestinfo_id],
@@ -13,8 +12,6 @@ module Api::V1
     rescue ActiveRecord::RecordInvalid => e
       render json: { errors: e.record.errors.full_messages }, status: :unprocessable_entity
     end
-  
-    # DELETE /bookings/:id
     def destroy
       booking = Booking.find_by(id: params[:id])
       if booking

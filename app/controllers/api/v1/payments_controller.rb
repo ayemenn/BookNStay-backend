@@ -1,6 +1,5 @@
 module Api::V1
   class PaymentsController < ApplicationController
-    # POST /payments
     def create
       booking = Booking.find(params[:booking_id])
 
@@ -9,8 +8,6 @@ module Api::V1
         render json: { error: 'Payment already exists for this booking.' }, status: :unprocessable_entity
         return
       end
-      
-      # Use BillCalculationService to calculate total amount
       service = BillCalculationService.new(booking, params[:price_per_night])
 
       if service.call
@@ -21,17 +18,15 @@ module Api::V1
       end
     end
 
-    # POST /payment_intents
+    # payment_intents
     def create_payment_intent
       booking = Booking.find(params[:booking_id])
-
-      # Use BillCalculationService to calculate total amount
       service = BillCalculationService.new(booking, params[:price_per_night])
 
       if service.call
         begin
           payment_intent = Stripe::PaymentIntent.create(
-            amount: (service.total_amount * 100).to_i, # Convert to cents and ensure it's an integer
+            amount: (service.total_amount * 100).to_i, 
             currency: 'usd',
             description: 'Booking payment',
             metadata: { booking_id: booking.id }

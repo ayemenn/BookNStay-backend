@@ -9,8 +9,7 @@ class TripAdvisorSearchService
   end
 
   def search
-    puts "API Key: #{api_key}" # Debugging line (be careful with sensitive info)
-
+   # puts "API Key: #{api_key}"
     url = URI("#{BASE_URL}?searchQuery=#{@query}&language=en&key=#{api_key}")
 
     response = Net::HTTP.start(url.host, url.port, use_ssl: url.scheme == 'https') do |http|
@@ -18,8 +17,6 @@ class TripAdvisorSearchService
       request['accept'] = 'application/json'
       http.request(request)
     end
-
-    # Check for response code and parse JSON
     if response.is_a?(Net::HTTPSuccess)
       JSON.parse(response.body)
     else

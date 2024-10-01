@@ -1,4 +1,3 @@
-# app/controllers/locations_controller.rb
 module Api::V1
   class LocationsController < ApplicationController
     skip_before_action :verify_authenticity_token, only: [:photos]
