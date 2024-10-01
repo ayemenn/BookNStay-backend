@@ -9,9 +9,8 @@ module Api::V1
         render json: { error: 'Payment already exists for this booking.' }, status: :unprocessable_entity
         return
       end
-      
-      # Use BillCalculationService to calculate total amount
-      service = BillCalculationService.new(booking, params[:price_per_night])
+      voucher = Voucher.find_by(id: params[:voucher_id]) 
+      service = BillCalculationService.new(booking, params[:price_per_night], voucher)
 
       if service.call
         create_payment(booking.id, service.total_amount)
@@ -24,9 +23,7 @@ module Api::V1
     # POST /payment_intents
     def create_payment_intent
       booking = Booking.find(params[:booking_id])
-
-      # Use BillCalculationService to calculate total amount
-      service = BillCalculationService.new(booking, params[:price_per_night])
+      service = BillCalculationService.new(booking, params[:price_per_night], voucher)
 
       if service.call
         begin

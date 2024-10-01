@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       get '/reviews/fetch', to: 'reviews#fetch_reviews'
       post '/reviews', to: 'reviews#create'
     
+      resources :vouchers
       resources :search_histories, only: [:create, :index]
       resources :bookings, only: [:create, :destroy]
       resources :guestinfos, only: [:create , :destroy]
@@ -21,6 +22,7 @@ Rails.application.routes.draw do
           post 'payment_intents', to: 'payments#create_payment_intent'
         end
       end
+
     end
   end
 end
