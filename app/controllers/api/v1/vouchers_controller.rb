@@ -3,9 +3,9 @@ module Api::V1
         skip_before_action :verify_authenticity_token, only: [:create]
         def index
             @vouchers = Voucher.all
-            render json: @voucher
+            render json: @vouchers
         end
-
+        
         def create 
             @voucher=Voucher.new(voucher_params)
             if @voucher.save

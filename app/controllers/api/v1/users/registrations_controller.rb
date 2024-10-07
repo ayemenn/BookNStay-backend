@@ -25,7 +25,7 @@ module Api
           end
         end
 
-        # Override the update method if you need to handle updates for your API
+      
         def update
           resource = User.find(params[:id])
           resource.update(update_params)
