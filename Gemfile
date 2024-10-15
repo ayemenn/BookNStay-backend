@@ -43,6 +43,15 @@ gem "bootsnap", require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
+# Gemfile
+  gem 'capistrano', '~> 3.17'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-rvm'
+
+
+
 end
 
 group :development do
@@ -56,9 +65,8 @@ gem 'activeadmin', '~> 3.2.2'
 gem 'sass-rails', '~> 6.0'
 gem 'rack', '~> 3.1.7'
 gem 'railties', '~> 7.1.3.4'
-gem "rack-cors"
-gem 'devise-jwt'
-gem 'jsonapi-serializer'
 gem 'active_model_serializers'
 gem 'httparty'
 gem 'pry'
+gem 'ed25519', '~> 1.2'
+gem 'bcrypt_pbkdf', '~> 1.0'
