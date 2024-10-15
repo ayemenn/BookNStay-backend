@@ -55,7 +55,7 @@ GEM
       activemodel (>= 4.1)
       case_transform (>= 0.2)
       jsonapi-renderer (>= 0.1.1.beta1, < 0.3)
-    activeadmin (3.2.3)
+    activeadmin (3.2.5)
       arbre (~> 1.2, >= 1.2.1)
       csv
       formtastic (>= 3.1)
@@ -158,11 +158,15 @@ GEM
     ed25519 (1.3.0)
     erubi (1.13.0)
     ffi (1.17.0-aarch64-linux-gnu)
+    ffi (1.17.0-aarch64-linux-musl)
     ffi (1.17.0-arm-linux-gnu)
+    ffi (1.17.0-arm-linux-musl)
     ffi (1.17.0-arm64-darwin)
     ffi (1.17.0-x86-linux-gnu)
+    ffi (1.17.0-x86-linux-musl)
     ffi (1.17.0-x86_64-darwin)
     ffi (1.17.0-x86_64-linux-gnu)
+    ffi (1.17.0-x86_64-linux-musl)
     formtastic (5.0.0)
       actionpack (>= 6.0.0)
     formtastic_i18n (0.7.0)
@@ -175,7 +179,7 @@ GEM
       csv
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
-    i18n (1.14.5)
+    i18n (1.14.6)
       concurrent-ruby (~> 1.0)
     inherited_resources (1.14.0)
       actionpack (>= 6.0)
@@ -183,7 +187,7 @@ GEM
       railties (>= 6.0)
       responders (>= 2)
     io-console (0.7.2)
-    irb (1.14.0)
+    irb (1.14.1)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     jquery-rails (4.6.0)
@@ -193,7 +197,7 @@ GEM
     jsonapi-renderer (0.2.2)
     jsonapi-serializer (2.2.0)
       activesupport (>= 4.2)
-    jwt (2.8.2)
+    jwt (2.9.3)
       base64
     kaminari (1.2.2)
       activesupport (>= 4.1.0)
@@ -219,11 +223,11 @@ GEM
     method_source (1.1.0)
     mini_mime (1.1.5)
     minitest (5.25.1)
-    msgpack (1.7.2)
+    msgpack (1.7.3)
     multi_xml (0.7.1)
       bigdecimal (~> 3.1)
     mutex_m (0.2.0)
-    net-imap (0.4.14)
+    net-imap (0.4.17)
       date
       net-protocol
     net-pop (0.1.2)
@@ -251,16 +255,16 @@ GEM
       racc (~> 1.4)
     orm_adapter (0.5.0)
     ostruct (0.6.0)
-    pg (1.5.7)
+    pg (1.5.8)
     pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
     psych (5.1.2)
       stringio
-    puma (6.4.2)
+    puma (6.4.3)
       nio4r (~> 2.0)
     racc (1.8.1)
-    rack (3.1.7)
+    rack (3.1.8)
     rack-session (2.0.0)
       rack (>= 3.0.0)
     rack-test (2.1.0)
@@ -304,7 +308,7 @@ GEM
       i18n
     rdoc (6.7.0)
       psych (>= 4.0.0)
-    reline (0.5.9)
+    reline (0.5.10)
       io-console (~> 0.5)
     responders (3.1.1)
       actionpack (>= 5.2)
@@ -333,14 +337,14 @@ GEM
     sqlite3 (1.7.3-x86-linux)
     sqlite3 (1.7.3-x86_64-darwin)
     sqlite3 (1.7.3-x86_64-linux)
-    sshkit (1.23.1)
+    sshkit (1.23.2)
       base64
       net-scp (>= 1.1.2)
       net-sftp (>= 2.1.2)
       net-ssh (>= 2.8.0)
       ostruct
     stringio (3.1.1)
-    stripe (12.6.0)
+    stripe (13.0.0)
     thor (1.3.2)
     tilt (2.4.0)
     timeout (0.4.1)
@@ -353,19 +357,27 @@ GEM
       dry-configurable (>= 0.13, < 2)
       jwt (~> 2.1)
       warden (~> 1.2)
-    webrick (1.8.1)
+    webrick (1.8.2)
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    zeitwerk (2.6.17)
+    zeitwerk (2.7.0)
 
 PLATFORMS
   aarch64-linux
+  aarch64-linux-gnu
+  aarch64-linux-musl
   arm-linux
+  arm-linux-gnu
+  arm-linux-musl
   arm64-darwin
   x86-linux
+  x86-linux-gnu
+  x86-linux-musl
   x86_64-darwin
   x86_64-linux
+  x86_64-linux-gnu
+  x86_64-linux-musl
 
 DEPENDENCIES
   active_model_serializers
@@ -401,4 +413,4 @@ RUBY VERSION
    ruby 3.3.3p89
 
 BUNDLED WITH
-   2.5.16
+   2.5.21
