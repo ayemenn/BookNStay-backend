@@ -8,7 +8,7 @@ gem 'pg'
 gem 'devise', '~> 4.9.4'
 gem 'warden', '~> 1.2.9'
 gem 'devise-jwt'
-
+gem 'rack-cors', require: 'rack/cors'
 gem 'jsonapi-serializer'
 
 # Use sqlite3 as the database for Active Record
