@@ -8,7 +8,7 @@ set :branch, 'main'
 set :log_level, :debug
 
 set :rvm_ruby_version, '3.3.3'
-append :linked_files, 'config/database.yml'
+append :linked_files, 'config/database.yml', 'config/production.key', 'config/master.key'
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system', 'public/uploads'
 
 set :ssh_options, {
