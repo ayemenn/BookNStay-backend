@@ -3,7 +3,11 @@ source "https://rubygems.org"
 ruby "3.3.3"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.1.3", ">= 7.1.3.4"
+gem 'rails', '7.1.3.4'
+gem 'actionmailbox', '7.1.3.4'
+gem 'actionmailer', '7.1.3.4'
+gem 'mail', '2.8.1'
+
 gem 'pg'
 gem 'devise', '~> 4.9.4'
 gem 'warden', '~> 1.2.9'
